@@ -1,0 +1,70 @@
+<div class="container-fluid">
+    <div class="row pt-5">
+        <div class="col-md-5 mx-auto">
+            <div class="card rounded-0">
+                <div class="card-header bg-dark">
+                    <h3 class="mb-0" style="color: white;">Add User</h3>
+                </div> 
+                <div class="card-body">
+                    <form #registerForm="ngForm" class="form" (ngSubmit)="onSubmit()">
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input  name="email" type="email" class="form-control rounded-0" placeholder="Enter email" [(ngModel)]="user.email_id" #email="ngModel" required pattern="^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$"
+                            [class.is-invalid]="email.invalid && email.touched">
+                            <div *ngIf="email.errors && (email.invalid && email.touched)">
+                              <small class="text-danger" *ngIf="email.errors.required">*Email Id is required</small>
+                              <small class="text-danger" *ngIf="email.errors.pattern">*Enter the valid Email Id</small>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="form-group">
+                          <label for="username">Username</label>
+                          <input  name="username" type="text" class="form-control rounded-0" placeholder="Enter username" [(ngModel)]="user.user_name" #username="ngModel" required
+                          [class.is-invalid]="username.invalid && username.touched">
+                          <small class="text-danger" [class.d-none]="username.valid || username.untouched">*Username is required</small>
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <label for="username">Mobile Number</label>
+                            <input  name="mobileno" type="tel" class="form-control rounded-0" placeholder="Enter mobile number" [(ngModel)]="user.mobile_no" #mobileno="ngModel" required pattern="^\d{10}$"
+                            [class.is-invalid]="mobileno.invalid && mobileno.touched">
+                            <div *ngIf="mobileno.errors && (mobileno.invalid && mobileno.touched)">
+                                <small class="text-danger" *ngIf="mobileno.errors.required">
+                                    *Mobile number is required
+                                </small>
+                                <small class="text-danger" *ngIf="mobileno.errors.pattern">
+                                    *Mobile number must be 10 digits
+                                </small>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <label for="qualification">Qualification</label>
+                            <input  name="qualification" type="text" class="form-control rounded-0" placeholder="Enter qualification" [(ngModel)]="user.qualification" #qualification="ngModel" required
+                            [class.is-invalid]="qualification.invalid && qualification.touched">
+                            <small class="text-danger" [class.d-none]="qualification.valid || qualification.untouched">*Qualification is required</small>
+                          </div>
+                          <br>
+                        <button [disabled]="registerForm.form.invalid" type="submit" class="btn btn-dark float-right" data-bs-toggle="modal" data-bs-target="#exampleModal">Submit</button>&nbsp;
+                        <button type="reset" class="btn btn-danger float-right">Reset</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+      </div>
+    </div>
+    
+      <!-- Modal -->
+      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Success</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              User added successfully!
+            </div>
+          </div>
+        </div>
+      </div>
